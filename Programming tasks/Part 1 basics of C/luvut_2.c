@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BOOL int
-#define TRUE 1
-#define False 0
-
 int main(int argc, char **argv) {
 
     int isfirst = 1;
@@ -12,28 +8,31 @@ int main(int argc, char **argv) {
     int max = atoi(argv[2]);
     int devided;
     int i, j;
-    BOOL isDevidable;
-
-    if (argc < 3) {
-        printf("Invalid input!");
-        return 1;
-    }
+    int isDevidable = 0;
 
     for (i = first; i <= max; i++) {
         for (j = 3; j < argc; j++) {
             devided = atoi(argv[j]);
+            if (devided == 0) {continue;}
+            
             if (i % devided == 0) {
+                isDevidable = 1;
                 break;
             }
+            isDevidable = 0;
         }
 
-        if (!isfirst) {
+        if (!isfirst && !isDevidable) {
             printf(" ");
         }
-
-        printf("%d", i);
-        isfirst = 0;
+        if (!isDevidable) {
+            printf("%d", i);
+            isfirst = 0;
+        }
     }
-
+    if (isfirst) {
+        return 0;
+    }
+    printf("\n");
     return 0;
 }
