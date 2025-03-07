@@ -1,65 +1,33 @@
 #include "bitit.h"
 #include <stdio.h>
 
-void scharBitit(signed char x) {
-    int bit, i;
-    int zeroes = 0;
-    int ones = 0;
-    printf("%d\n", x);
-    for (i = sizeof(signed char) * 8 - 1; i >= 0; i--) {
-        bit = (x >> i) & 1;
+void kaannaScharBitit(signed char *x) {
+    signed char result;
+    int i, bit;
+    int numBits = sizeof(signed char) * 8;
+    printf("%d\n", *x);
+
+    for (i = numBits -1; i >= 0; i--) {
+        bit = (*x >> i) & 1;
         printf("%d", bit);
-        bit == 1 ? ones++ : zeroes++;
     }
     printf("\n");
-    printf("%d\n", zeroes);
-    printf("%d\n", ones);
+
+    for (i = 0; i < numBits; i++) {
+        result <<= 1;
+        result |= (*x & 1);
+        *x >>= 1;
+    }
+    *x = result;
+    printf("%c", *x);
 }
 
-void shortBitit(short int x) {
-    int bit, i;
-    int zeroes = 0;
-    int ones = 0;
-    printf("%d\n", x);
+void kaannaShortBitit(short *x) {
 
-    for (i = sizeof(short int) * 8 - 1; i >= 0; i--) {
-        bit = (x >> i) & 1;
-        printf("%d", bit);
-        bit == 1 ? ones++ : zeroes++;
-    }
-    printf("\n");
-    printf("%d\n", zeroes);
-    printf("%d\n", ones);
 }
+void kaannaIntBitit(int *x) {
 
-void intBitit(int x) {
-    int bit, i;
-    int zeroes = 0;
-    int ones = 0;
-    printf("%d\n", x);
-
-    for (i = sizeof(int) * 8 - 1; i >= 0; i--) {
-        bit = (x >> i) & 1;
-        printf("%d", bit);
-        bit == 1 ? ones++ : zeroes++;
-    }
-    printf("\n");
-    printf("%d\n", zeroes);
-    printf("%d\n", ones);
 }
+void kaannaLongBitit(long *x) {
 
-void longBitit(long int x) {
-    int bit, i;
-    int zeroes = 0;
-    int ones = 0;
-    printf("%ld\n", x);
-
-    for (i = sizeof(long int) * 8 - 1; i >= 0; i--) {
-        bit = (x >> i) & 1;
-        printf("%d", bit);
-        bit == 1 ? ones++ : zeroes++;
-    }
-    printf("\n");
-    printf("%d\n", zeroes);
-    printf("%d\n", ones);
 }
