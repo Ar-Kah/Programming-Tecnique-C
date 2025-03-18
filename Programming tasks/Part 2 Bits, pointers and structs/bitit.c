@@ -2,32 +2,57 @@
 #include <stdio.h>
 
 void kaannaScharBitit(signed char *x) {
-    signed char result;
-    int i, bit;
-    int numBits = sizeof(signed char) * 8;
-    printf("%d\n", *x);
-
-    for (i = numBits -1; i >= 0; i--) {
-        bit = (*x >> i) & 1;
-        printf("%d", bit);
-    }
-    printf("\n");
+    signed char original = *x;
+    signed char result = 0;
+    int numBits = 8;
+    int i;
 
     for (i = 0; i < numBits; i++) {
-        result <<= 1;
-        result |= (*x & 1);
-        *x >>= 1;
+        result = (result << 1) | (original & 1);
+        original >>= 1;
     }
+
     *x = result;
-    printf("%c", *x);
 }
+
+
 
 void kaannaShortBitit(short *x) {
+    unsigned short original = (unsigned short)(*x);
+    unsigned short result = 0;
+    int numBits = 16;
+    int i;
 
+    for (i = 0; i < numBits; i++) {
+        result = (result << 1) | (original & 1);
+        original >>= 1;
+    }
+
+    *x = (short)result;
 }
 void kaannaIntBitit(int *x) {
+    int original = *x;
+    int result = 0;
+    int numBits = 32;
+    int i;
 
+    for (i = 0; i < numBits; i++) {
+        result = (result << 1) | (original & 1);
+        original >>= 1;
+    }
+
+    *x = result;
 }
 void kaannaLongBitit(long *x) {
+    long original = *x;
+    long result = 0;
+    int numBits = 64;
+    int i;
 
+    for (i = 0; i < numBits; i++) {
+        result = (result << 1) | (original & 1);
+        original >>= 1;
+    }
+
+    *x = result;
 }
